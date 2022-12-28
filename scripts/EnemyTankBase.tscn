@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://nodes/TankBase.tscn" type="PackedScene" id=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends 'res://nodes/TankBase.gd'
+
+export var fireRate = 1
+export var behavior = \"normal\"
+
+func _init(_speed=50, 
+		   _bCount=1,
+		   _bType=\"normal\",
+		   _mCount=2,
+		   _fireRate=1,
+		   _behav=\"normal\"):
+	# Call base class init and then set enemy only variables
+	._init(_speed,
+		   _bCount,
+		   _bType,
+		   _mCount,
+		   false)
+	behavior = _behav
+	fireRate = _fireRate
+	
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	# Keep default
+	._init()
+
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[node name="EnemyTankBase" instance=ExtResource( 2 )]
+script = SubResource( 1 )
+fireRate = 1
+behavior = "normal"
